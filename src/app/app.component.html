@@ -1,20 +1,55 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
-  <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
-</div>
-<h2>Here are some links to help you start: </h2>
-<ul>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://github.com/angular/angular-cli/wiki">CLI Documentation</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
-  </li>
-</ul>
+<div class="row">
+    <div class="container">
+        <form [formGroup]="userForm">
+            <legend>Creeate User </legend>
 
+            <div class="form-group">
+                <label for="">Name</label>
+                <input type="text" class="form-control" id="" placeholder="Input field" formControlName="name">
+            </div>
+
+            <div class="form-group">
+                <label for="">Age</label>
+                <input type="text" class="form-control" id="" placeholder="Input field" formControlName="age">
+            </div>
+
+            <div formGroupName="typegroup">
+                <div class="form-group">
+                    <label for="">Type</label>
+                    <select name="type" id="inputtype" formControlName="type" class="form-control" required="required">
+                        <option value="">Select one</option>
+                        <option value="admin">Admin</option>
+                        <option value="client">Client</option>
+                        <option value="user">User</option>
+                    </select>
+                </div>
+                <div formGroupName="admin" *ngIf="userForm.controls.typegroup.get('type').value =='admin'">
+                    <div class="form-group">
+                        <label for="">Tel</label>
+                        <input type="text" class="form-control" id="" placeholder="Input field" formControlName="tel">
+                    </div>
+                    <div class="form-group">
+                        <label for="">Address</label>
+                        <input type="text" class="form-control" id="" placeholder="Input field" formControlName="address">
+                    </div>
+                    <div class="form-group">
+                        <label for="">Email</label>
+                        <input type="text" class="form-control" id="" placeholder="Input field" formControlName="email">
+                    </div>
+                </div>
+                <div formGroupName="client" *ngIf="userForm.controls.typegroup.get('type').value =='client'">
+                    <div class="form-group">
+                        <label for="">Permis</label>
+                        <input type="text" class="form-control" id="" placeholder="Input field" formControlName="permis">
+                    </div>
+                    <div class="form-group">
+                        <label for="">Card</label>
+                        <input type="text" class="form-control" id="" placeholder="Input field" formControlName="card">
+                    </div>
+                </div>
+            </div>
+            <button type="submit" [disabled]="userForm.invalid" class="btn btn-primary">Submit</button>
+        </form>
+
+    </div>
+</div>
